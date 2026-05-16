@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aptitude Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        
+        <!-- AUTHENTICATION CARD (Hidden if logged in) -->
+        <div id="auth-box" class="card {% if logged_in %}hidden{% endif %}">
+            <h2 id="auth-title">Account Login</h2>
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button class="primary-btn" id="auth-action-btn" onclick="handleAuth()">Login</button>
+            <p onclick="toggleAuthMode()" id="auth-toggle-text" class="link-text">Need an account? Register here.</p>
+        </div>
+
+        <!-- USER DASHBOARD (Hidden if logged out) -->
+        <div id="dashboard-box" class="card {% if not logged_in %}hidden{% endif %}">
+            <div class="dash-header">
+                <h2>Welcome, <span id="user-display">{{ username }}</span>!</h2>
+                <a href="/logout" class="logout-link">Logout</a>
+            </div>
+            <h3>Select an Aptitude Exam (20 Marks)</h3>
+            <div class="grid">
+                <button class="menu-btn" onclick="startTest('quantitative')">📊 Quantitative Aptitude</button>
+                <button class="menu-btn" onclick="startTest('logical')">🧠 Logical Reasoning</button>
+                <button class="menu-btn" onclick="startTest('verbal')">✍️ Verbal Ability</button>
+            </div>
+            <div class="history-section">
+                <h4>Your Past Attempts</h4>
+                <ul id="history-list">Loading attempts...</ul>
+            </div>
+        </div>
+
+        <!-- EXAM QUIZ BOX -->
+        <div id="quiz-box" class="card hidden">
+            <div class="quiz-header">
+                <span id="test-title">Exam</span>
+                <span id="progress">Question 1/20</span>
+            </div>
+            <h3 id="question-text">Loading question content...</h3>
+            <div id="options-container"></div>
+            <div class="actions">
+                <button id="prev-btn" onclick="prevQuestion()" disabled>Previous</button>
+                <button id="next-btn" class="primary-btn" onclick="nextQuestion()">Next</button>
+            </div>
+        </div>
+
+        <!-- SUMMARY SCORE SCREEN -->
+        <div id="result-box" class="card hidden">
+            <h2>Test Completed!</h2>
+            <div class="score-circle"><span id="score-display">0</span><small>/20</small></div>
+            <p id="performance-feedback"></p>
+            <button class="primary-btn" onclick="exitToDashboard()">Return to Dashboard</button>
+        </div>
+
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,11 +1,9 @@
 # Aptitude Test Website
 
 This is a full-stack web application for taking aptitude tests. Users can create an account, log in, take tests in different categories, and view their past scores.
-
 The project uses HTML, CSS, and JavaScript for the frontend, and Python with Flask and SQLite for the backend.
 
 ---
-
 ## Features
 
 - User Accounts: Users can register and log in securely.
@@ -15,7 +13,6 @@ The project uses HTML, CSS, and JavaScript for the frontend, and Python with Fla
 - Score History: Past test scores are saved in a database and displayed on the user dashboard.
 
 ---
-
 ## Tech Stack
 
 - Frontend: HTML5, CSS3, JavaScript (Fetch API)

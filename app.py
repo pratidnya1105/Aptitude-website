@@ -11,7 +11,6 @@ def get_db():
     conn.row_factory = sqlite3.Row
     return conn
 
-# Database Initialization
 def init_db():
     with get_db() as conn:
         conn.execute('''CREATE TABLE IF NOT EXISTS users (
@@ -26,8 +25,6 @@ def init_db():
         conn.commit()
 
 init_db()
-
-# 60 Sample Questions (20 Questions x 3 categories)
 tests_data = {
     "quantitative": [{"id": i, "q": f"Quantitative Q{i}: What is {10+i} + {5+i}?", "options": [str(15+2*i), str(20+i), str(10+i), "None"], "answer": str(15+2*i)} for i in range(1, 21)],
     "logical": [{"id": i, "q": f"Logical Reasoning Q{i}: If A=1, B=2, code for index {i}?", "options": [str(i), str(i+1), "A", "B"], "answer": str(i)} for i in range(1, 21)],
